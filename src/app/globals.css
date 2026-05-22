@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Void & surfaces */
+  --background: #050608;
+  --foreground: #e8eaed;
+  --surface: #0b0d12;
+  --surface-elevated: #11141c;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Text hierarchy */
+  --muted: #8b9298;
+  --muted-foreground: #a3a9b0;
+
+  /* Accent — teal intelligence glow */
+  --accent: #2dd4bf;
+  --accent-foreground: #042f2e;
+  --accent-muted: rgba(45, 212, 191, 0.12);
+  --accent-glow: rgba(45, 212, 191, 0.35);
+
+  /* Secondary — violet signal */
+  --secondary: #8b5cf6;
+  --secondary-muted: rgba(139, 92, 246, 0.12);
+
+  /* UI tokens (shadcn-compatible) */
+  --card: #0b0d12;
+  --card-foreground: #e8eaed;
+  --popover: #11141c;
+  --popover-foreground: #e8eaed;
+  --primary: #2dd4bf;
+  --primary-foreground: #042f2e;
+  --secondary-foreground: #e8eaed;
+  --destructive: #f87171;
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: rgba(45, 212, 191, 0.5);
+  --radius: 0.625rem;
+
+  /* Grid & glass */
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --glass: rgba(11, 13, 18, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-muted: var(--accent-muted);
+  --color-secondary: var(--secondary);
+  --color-secondary-muted: var(--secondary-muted);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-plex-sans);
+  --font-display: var(--font-syne);
+  --font-mono: var(--font-plex-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(45, 212, 191, 0.08),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 100% 0%,
+        rgba(139, 92, 246, 0.05),
+        transparent 50%
+      );
+  }
+
+  ::selection {
+    background: rgba(45, 212, 191, 0.25);
+    color: var(--foreground);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-syne), system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+  }
+
+  .glass-panel {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glow-accent {
+    box-shadow:
+      0 0 0 1px rgba(45, 212, 191, 0.1),
+      0 0 40px -8px var(--accent-glow);
+  }
+
+  .grid-overlay {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #e8eaed 0%, #2dd4bf 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }

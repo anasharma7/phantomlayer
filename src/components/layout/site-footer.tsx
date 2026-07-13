@@ -1,8 +1,15 @@
 import Link from "next/link";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 import { mainNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
+
+const socialLinks = [
+  { label: "GitHub", href: siteConfig.links.github, icon: Github },
+  { label: "LinkedIn", href: siteConfig.links.linkedin, icon: Linkedin },
+  { label: "X", href: siteConfig.links.twitter, icon: Twitter },
+] as const;
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -18,6 +25,20 @@ export function SiteFooter() {
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
               {siteConfig.description}
             </p>
+            <div className="mt-6 flex gap-3">
+              {socialLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--border)] text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
+                >
+                  <link.icon className="size-4" aria-hidden />
+                </Link>
+              ))}
+            </div>
           </div>
           <nav
             className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3"

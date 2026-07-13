@@ -1,0 +1,50 @@
+import type { PodcastEpisode } from "@/types/content";
+
+export const podcastEpisodes: PodcastEpisode[] = [
+  {
+    type: "podcast",
+    title: "When Platforms Become Battlefields",
+    description:
+      "A conversation on coordinated inauthentic behavior, bot networks, and the economics of online manipulation.",
+    slug: "when-platforms-become-battlefields",
+    date: "2026-06-10",
+    category: "trust-safety",
+    tags: ["platform abuse", "bots", "OSINT"],
+    published: true,
+    featured: true,
+    episode: 12,
+    duration: "48 min",
+    spotifyUrl: "https://open.spotify.com/",
+    youtubeUrl: "https://youtube.com/",
+  },
+  {
+    type: "podcast",
+    title: "AI Red Teaming for Practitioners",
+    description:
+      "Practical workflows for stress-testing LLM applications before adversaries find the gaps first.",
+    slug: "ai-red-teaming-for-practitioners",
+    date: "2026-05-20",
+    category: "ai-security",
+    tags: ["red teaming", "LLM", "evals"],
+    published: true,
+    episode: 11,
+    duration: "52 min",
+    spotifyUrl: "https://open.spotify.com/",
+    youtubeUrl: "https://youtube.com/",
+  },
+  {
+    type: "podcast",
+    title: "The Geography of Cyber Conflict",
+    description:
+      "How physical geography and geopolitics shape where attacks originate and where defenses matter most.",
+    slug: "geography-of-cyber-conflict",
+    date: "2026-04-28",
+    category: "geospatial",
+    tags: ["geopolitics", "OSINT", "infrastructure"],
+    published: true,
+    episode: 10,
+    duration: "41 min",
+    spotifyUrl: "https://open.spotify.com/",
+    youtubeUrl: "https://youtube.com/",
+  },
+];

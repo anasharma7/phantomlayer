@@ -23,9 +23,8 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
     <header
@@ -59,25 +58,20 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
-          {mainNav.map((item) => {
-            const active =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "rounded-lg px-3 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors",
-                  active
-                    ? "text-accent"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {item.title}
-              </Link>
-            );
-          })}
+          {mainNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "rounded-lg px-3 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors",
+                isActive(item.href)
+                  ? "text-accent"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {item.title}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -86,7 +80,7 @@ export function SiteHeader() {
             size="icon"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileOpen((o) => !o)}
+            onClick={() => setMobileOpen((open) => !open)}
           >
             {mobileOpen ? <X /> : <Menu />}
           </Button>
@@ -96,6 +90,7 @@ export function SiteHeader() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            key={pathname}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -107,7 +102,13 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-lg px-3 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "rounded-lg px-3 py-3 font-mono text-xs uppercase tracking-widest transition-colors hover:bg-white/5",
+                    isActive(item.href)
+                      ? "text-accent"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
                 >
                   {item.title}
                 </Link>

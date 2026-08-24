@@ -5,6 +5,7 @@ import { Headphones, Youtube } from "lucide-react";
 import { ContentCard } from "@/components/shared/content-card";
 import { PageHeader } from "@/components/shared/page-header";
 import { Button } from "@/components/ui/button";
+import { getPublished, sortByDateDesc } from "@/lib/content";
 import { podcastEpisodes } from "@/data/podcast";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function PodcastPage() {
-  const episodes = podcastEpisodes.filter((episode) => episode.published);
+  const episodes = sortByDateDesc(getPublished(podcastEpisodes));
 
   return (
     <main className="flex-1">

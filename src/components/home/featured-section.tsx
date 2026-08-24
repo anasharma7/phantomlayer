@@ -2,17 +2,15 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { ContentCard } from "@/components/shared/content-card";
+import { ContentGrid } from "@/components/shared/content-grid";
 import { Button } from "@/components/ui/button";
+import { getFeatured, getPublished } from "@/lib/content";
 import { labProjects } from "@/data/lab";
 import { researchPosts } from "@/data/research";
 
 export function FeaturedSection() {
-  const featuredResearch = researchPosts
-    .filter((post) => post.published && post.featured)
-    .slice(0, 2);
-  const featuredLab = labProjects
-    .filter((project) => project.published && project.featured)
-    .slice(0, 1);
+  const featuredResearch = getFeatured(getPublished(researchPosts), 2);
+  const featuredLab = getFeatured(getPublished(labProjects), 1);
 
   return (
     <section className="border-t border-[var(--border)] bg-surface/30 py-24">
@@ -34,7 +32,7 @@ export function FeaturedSection() {
           </Button>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ContentGrid columns={3} className="mt-12">
           {featuredResearch.map((post) => (
             <ContentCard
               key={post.slug}
@@ -51,7 +49,7 @@ export function FeaturedSection() {
               meta="In Progress"
             />
           ))}
-        </div>
+        </ContentGrid>
       </div>
     </section>
   );

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 import { ContentCard } from "@/components/shared/content-card";
+import { ContentGrid } from "@/components/shared/content-grid";
 import { PageHeader } from "@/components/shared/page-header";
+import { getPublished, sortByDateDesc } from "@/lib/content";
 import { researchPosts } from "@/data/research";
 
 export const metadata: Metadata = {
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function ResearchPage() {
-  const posts = researchPosts.filter((post) => post.published);
+  const posts = sortByDateDesc(getPublished(researchPosts));
 
   return (
     <main className="flex-1">
@@ -20,7 +22,7 @@ export default function ResearchPage() {
         description="Long-form essays on offensive security, AI-era trust systems, and internet-native culture."
       />
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-6 sm:grid-cols-2">
+        <ContentGrid>
           {posts.map((post) => (
             <ContentCard
               key={post.slug}
@@ -29,7 +31,7 @@ export default function ResearchPage() {
               meta={post.readingTime}
             />
           ))}
-        </div>
+        </ContentGrid>
       </section>
     </main>
   );

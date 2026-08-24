@@ -3,6 +3,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { getCategoryLabel } from "@/lib/categories";
+import { formatDate } from "@/lib/format-date";
 import type { ContentMeta } from "@/types/content";
 
 interface ContentCardProps {
@@ -12,11 +13,7 @@ interface ContentCardProps {
 }
 
 export function ContentCard({ item, href, meta }: ContentCardProps) {
-  const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  const formattedDate = formatDate(item.date);
 
   return (
     <article className="glass-panel group relative flex flex-col rounded-xl p-6 transition-colors hover:border-[var(--border-strong)]">

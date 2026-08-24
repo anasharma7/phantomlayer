@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google";
 
 import { MainShell } from "@/components/layout/main-shell";
+import { JsonLd } from "@/components/shared/json-ld";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
@@ -72,6 +73,7 @@ export default function RootLayout({
       className={`${syne.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
     >
       <body className="min-h-full">
+        <JsonLd />
         <MainShell>{children}</MainShell>
       </body>
     </html>

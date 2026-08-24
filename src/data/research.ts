@@ -3,6 +3,19 @@ import type { ResearchPost } from "@/types/content";
 export const researchPosts: ResearchPost[] = [
   {
     type: "research",
+    title: "Agentic AI and the Expanding Attack Surface",
+    description:
+      "Why autonomous tool-use in LLM agents creates new classes of indirect injection and privilege escalation risks.",
+    slug: "agentic-ai-expanding-attack-surface",
+    date: "2026-08-20",
+    category: "ai-security",
+    tags: ["agentic AI", "tool use", "supply chain"],
+    published: true,
+    featured: true,
+    readingTime: "10 min",
+  },
+  {
+    type: "research",
     title: "Trust & Safety in the Age of Synthetic Media",
     description:
       "How platform abuse teams should rethink detection pipelines when generative AI collapses the cost of deception.",

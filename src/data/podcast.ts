@@ -3,6 +3,22 @@ import type { PodcastEpisode } from "@/types/content";
 export const podcastEpisodes: PodcastEpisode[] = [
   {
     type: "podcast",
+    title: "Building Defenses for Agentic Systems",
+    description:
+      "A deep dive on guardrails, capability scoping, and monitoring when AI agents can act on behalf of users.",
+    slug: "building-defenses-for-agentic-systems",
+    date: "2026-08-10",
+    category: "ai-security",
+    tags: ["agentic AI", "guardrails", "monitoring"],
+    published: true,
+    featured: true,
+    episode: 13,
+    duration: "55 min",
+    spotifyUrl: "https://open.spotify.com/",
+    youtubeUrl: "https://youtube.com/",
+  },
+  {
+    type: "podcast",
     title: "When Platforms Become Battlefields",
     description:
       "A conversation on coordinated inauthentic behavior, bot networks, and the economics of online manipulation.",

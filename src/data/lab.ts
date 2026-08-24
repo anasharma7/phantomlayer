@@ -3,6 +3,20 @@ import type { LabProject } from "@/types/content";
 export const labProjects: LabProject[] = [
   {
     type: "lab",
+    title: "MCP Server Security Auditor",
+    description:
+      "Static and dynamic analysis toolkit for Model Context Protocol servers — schema validation, auth bypass, and data exfil paths.",
+    slug: "mcp-server-security-auditor",
+    date: "2026-08-15",
+    category: "ai-security",
+    tags: ["MCP", "API security", "LLM tooling"],
+    published: true,
+    featured: true,
+    status: "active",
+    stack: ["TypeScript", "Node.js", "Zod"],
+  },
+  {
+    type: "lab",
     title: "PortSwigger Academy Tracker",
     description:
       "Personal lab journal tracking OWASP Top 10 exploits, blind SQLi chains, and SSRF pivot techniques.",

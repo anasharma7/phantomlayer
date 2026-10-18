@@ -37,8 +37,10 @@ Push to GitHub and connect to [Vercel](https://vercel.com). No extra config requ
 
 ## Roadmap
 
-- [ ] Homepage sections (featured, podcast, lab preview)
-- [ ] MDX content pipeline
+- [x] Homepage featured archive section
+- [ ] Homepage podcast + lab preview strips
+- [ ] MDX content pipeline (`content/` → pages)
 - [ ] About timeline
 - [ ] Contact / social cards
-- [ ] OG image + sitemap
+- [x] Sitemap + robots.txt
+- [ ] OG image (`public/og.png`)
